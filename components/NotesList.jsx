@@ -21,13 +21,12 @@ const NotesList = ({notes, deleteNote}) => {
       {notes.map(note => (
         <div 
           key={note.id} 
-          // לחיצה על הכרטיס (אבל לא על כפתור המחיקה) תפתח את המודל
+          // לחיצה על הכרטיס תפתח את המודל
           onClick={() => openModal(note)}
           style={{ cursor: 'pointer', flexDirection: 'column', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid black', borderRadius: '10px', padding: '10px', gap: '10px', width: '200px' }}
         >
           <h5>{new Date().toDateString()}</h5>
           <h2 style={{ margin: 0 }}>{note.title}</h2>
-          {/* מציגים רק חלק קטן מהטקסט ברשימה */}
           <p style={{ color: "blue", overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', width: '100%' }}>
             {note.text}
           </p>
