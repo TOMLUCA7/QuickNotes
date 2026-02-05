@@ -2,9 +2,10 @@ import React from 'react'
 
 const NotesList = ({notes, deleteNote}) => {
   return (
-    <div style={{ flexWrap: 'wrap', flexDirection: 'row', gap: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid black', borderRadius: '10px', padding: '10px', marginBottom: '10px'}}>
+    <div style={{ flexWrap: 'wrap', flexDirection: 'row', gap: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid black', borderRadius: '10px', padding: '10px', marginBottom: '5px'}}>
       {notes.map(note => (
         <div key={note.id} style={{flexDirection: 'column', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid black', borderRadius: '10px', padding: '10px', gap: '10px'}}>
+          <h5>{ new Date().toDateString()}</h5>
           <h2 style={{}}>{note.title}</h2>
           <p style={{color: "blue"}}>{note.text}</p>
           <button style={{backgroundColor: 'red', borderRadius: '10px', color: 'white', width: '100px', height: '30px'}} onClick={() => deleteNote(note.id)}>Delete</button>

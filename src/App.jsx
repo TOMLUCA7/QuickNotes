@@ -13,7 +13,7 @@ function App() {
 
   const addNote = (title, text) => {
     const newNote = {
-      id: Date.now(),
+      id: new Date().getTime(),
       title: title,
       text: text,
       isEditing: false
@@ -40,8 +40,17 @@ function App() {
  
   return (
     <>
-      <AddNote addNote={addNote}/>
-      <Note notes={notes} deleteNote={deleteNote} />
+      {notes.length > 0 ? (
+        <>
+          <AddNote addNote={addNote}/>
+          <Note notes={notes} deleteNote={deleteNote} />
+        </>
+      ) : (
+        <>
+          <AddNote addNote={addNote}/>
+          <p>No notes found</p>
+        </>
+      )}
     </>
   )
 }
