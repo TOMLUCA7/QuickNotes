@@ -17,13 +17,13 @@ const NotesList = ({notes, deleteNote}) => {
 
 
   return (
-    <div style={{ flexWrap: 'wrap', flexDirection: 'row', gap: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid black', borderRadius: '10px', padding: '10px', marginBottom: '5px' }}>
+    <div style={{ flexWrap: 'wrap', flexDirection: 'row', gap: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10px', marginBottom: '5px' }}>
       {notes.map(note => (
         <div 
           key={note.id} 
           // לחיצה על הכרטיס תפתח את המודל
           onClick={() => openModal(note)}
-          style={{ cursor: 'pointer', flexDirection: 'column', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid black', borderRadius: '10px', padding: '10px', gap: '10px', width: '200px' }}
+          style={{ cursor: 'pointer', flexDirection: 'column', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid white', borderRadius: '10px', padding: '10px', gap: '10px', width: '200px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)' }}
         >
           <h5>{new Date().toDateString()}</h5>
           <h2 style={{ margin: 0 }}>{note.title}</h2>
@@ -32,8 +32,9 @@ const NotesList = ({notes, deleteNote}) => {
           </p>
           
           <button 
-            style={{ backgroundColor: 'red', borderRadius: '10px', color: 'white', width: '100px', height: '30px', cursor: 'pointer' }} 
-            onClick={() => {
+            style={{ backgroundColor: 'red',border: '2px solid white', borderRadius: '10px', color: 'white', width: '100px', height: '30px', cursor: 'pointer' }} 
+            onClick={(e) => {
+              e.stopPropagation();
               deleteNote(note.id);
             }}
           >
