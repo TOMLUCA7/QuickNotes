@@ -3,14 +3,17 @@ import './App.css'
 import AddNote from '../components/AddNote'
 import Note from '../components/Note';
 
+import Modal from 'react-modal';
+// בדרך כלל שמים את זה מחוץ לקומפוננטה
+Modal.setAppElement('#root');
+
 function App() {
   const [notes, setNotes] = useState([
     { id: 1, title: "Shopping List", text: "Buy milk, bread and eggs", isEditing: false },
     { id: 2, title: "React Project", text: "Finish the CRUD exercise", isEditing: false },
   ]);
 
-  const [selectedNote, setSelectedNote] = useState(null);
-
+  
   const addNote = (title, text) => {
     const newNote = {
       id: new Date().getTime(),
@@ -33,10 +36,7 @@ function App() {
     setNotes(notes.map(note => note.id === noteId ? updatedNote : note))
     alert("Note updated")
   }
-
-  const selectNote = (noteId) => {
-    setSelectedNote(noteId)
-  }
+  
  
   return (
     <>
