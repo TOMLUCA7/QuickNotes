@@ -26,10 +26,12 @@ function App() {
      let deleteNoteById = newNotes.filter(note => note.id === noteId)
      newNotes.splice(deleteNoteById, 1)
      setNotes(newNotes)
+     alert("Note deleted")
   }
 
   const updateNote = (noteId, updatedNote) => {
     setNotes(notes.map(note => note.id === noteId ? updatedNote : note))
+    alert("Note updated")
   }
 
   const selectNote = (noteId) => {
@@ -39,7 +41,7 @@ function App() {
   return (
     <>
       <AddNote addNote={addNote}/>
-      <Note notes={notes}/>
+      <Note notes={notes} deleteNote={deleteNote} />
     </>
   )
 }
