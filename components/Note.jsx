@@ -1,11 +1,9 @@
 import React from 'react'
 import NotesList from './NotesList'
 
-const Note = ({notes, deleteNote}) => {
+const Note = ({notes, deleteNote, updateNote}) => {
   return (
-    <div>
-      <NotesList notes={notes} deleteNote={deleteNote}/>
-    </div>
+    <NotesList notes={notes} deleteNote={deleteNote} updateNote={updateNote}/>
   )
 }
 
