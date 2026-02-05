@@ -11,14 +11,29 @@ function App() {
   const [selectedNote, setSelectedNote] = useState(null);
 
   const addNote = () => {
-
+    const newNote = {
+      id: Date.now(),
+      title: '',
+      text: '',
+      isEditing: false
+    }
+    setNotes([...notes, newNote])
   }
 
-  const deleteNote = () => {}
+  const deleteNote = (noteId) => {
+     let newNotes = [...notes]
+     let deleteNoteById = newNotes.filter(note => note.id === noteId)
+     newNotes.splice(deleteNoteById, 1)
+     setNotes(newNotes)
+  }
 
-  const updateNote = () => {}
+  const updateNote = (noteId, updatedNote) => {
+    setNotes(notes.map(note => note.id === noteId ? updatedNote : note))
+  }
 
-  const selectNote = () => {}
+  const selectNote = (noteId) => {
+    setSelectedNote(noteId)
+  }
  
   return (
     <>
