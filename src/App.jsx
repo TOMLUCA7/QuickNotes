@@ -9,6 +9,16 @@ function App() {
   ]);
 
   const [selectedNote, setSelectedNote] = useState(null);
+
+  const addNote = () => {
+
+  }
+
+  const deleteNote = () => {}
+
+  const updateNote = () => {}
+
+  const selectNote = () => {}
  
   return (
     <>
