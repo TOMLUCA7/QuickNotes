@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Modal from 'react-modal';
+import EditNoteFields from './EditNoteFields';
 
 const NotesList = ({notes, deleteNote, updateNote}) => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -31,11 +32,11 @@ const NotesList = ({notes, deleteNote, updateNote}) => {
         >
           <h5>{new Date().toDateString()}</h5>
           <h2 style={{ margin: 0 }}>{note.title}</h2>
-          <p style={{ color: "blue", overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', width: '100%' }}>
+          <p style={{ color: "#119dd9de", overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', width: '100%' }}>
             {note.text}
           </p>
           <button 
-            style={{ backgroundColor: 'red',border: '2px solid white', borderRadius: '10px', color: 'white', width: '100px', height: '30px', cursor: 'pointer' }} 
+            style={{ backgroundColor: '#d64a4aea',border: '2px solid white', borderRadius: '10px', color: 'white', width: '100px', height: '30px', cursor: 'pointer' }} 
             onClick={(e) => {
               e.stopPropagation();
               deleteNote(note.id);
@@ -61,39 +62,9 @@ const NotesList = ({notes, deleteNote, updateNote}) => {
       >
         {selectedNote && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-            {/* Title Input */}
-            <input 
-              type="text" 
-              value={editTitle} 
-              onChange={(e) => setEditTitle(e.target.value)}
-              style={{
-                fontSize: '24px',
-                fontWeight: 'bold',
-                padding: '10px',
-                borderRadius: '10px',
-                border: '1px solid #ccc',
-                width: '100%',
-                boxSizing: 'border-box'
-              }}
-            />
+            {/* text and title Input component */}
+            <EditNoteFields editTitle={editTitle} editText={editText} setEditTitle={setEditTitle} setEditText={setEditText}/>
             
-            {/* Text Area */}
-            <textarea 
-              value={editText} 
-              onChange={(e) => setEditText(e.target.value)}
-              style={{
-                fontSize: '18px',
-                padding: '10px',
-                borderRadius: '10px',
-                border: '1px solid #ccc',
-                width: '100%',
-                minHeight: '100px',
-                fontFamily: 'inherit',
-                resize: 'vertical',
-                boxSizing: 'border-box'
-              }}
-            />
-
             {/* Buttons style */}
             <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginTop: '10px' }}>
               {/* Update Button */}
