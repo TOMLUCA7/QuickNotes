@@ -16,7 +16,7 @@ function App() {
   
   const addNote = (title, text) => {
     const newNote = {
-      id: new Date().getTime(),
+      id: new Date(),
       title: title,
       text: text,
       isEditing: false
