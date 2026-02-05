@@ -1,8 +1,11 @@
 import React from 'react'
+import NotesList from './NotesList'
 
-const Note = () => {
+const Note = ({notes}) => {
   return (
-    <div>Note</div>
+    <div>
+      <NotesList notes={notes}/>
+    </div>
   )
 }
 

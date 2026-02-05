@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import AddNote from '../components/AddNote'
+import Note from '../components/Note';
 
 function App() {
   const [notes, setNotes] = useState([
@@ -37,7 +38,8 @@ function App() {
  
   return (
     <>
-      <AddNote />
+      <AddNote addNote={addNote}/>
+      <Note notes={notes}/>
     </>
   )
 }
