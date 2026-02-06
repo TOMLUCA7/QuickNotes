@@ -10,7 +10,7 @@
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 10px;
-    border: 1px solid black;
+    border: 1px solid rgba(74, 74, 74, 0.512);
 }
 
 .add-note-text {
@@ -19,7 +19,7 @@
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 10px;
-    border: 1px solid black;
+    border: 1px solid rgba(74, 74, 74, 0.512);
 }
 
 .add-note-button {
@@ -29,5 +29,5 @@
     border-radius: 10px;
     background-color: #119dd9de;
     color: white;
-    border: 1px solid black;
+    border: 1px solid #119dd9de;
 }
