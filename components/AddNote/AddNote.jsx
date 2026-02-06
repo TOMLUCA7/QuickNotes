@@ -9,6 +9,7 @@ const AddNote = ({addNote}) => {
   const [category, setCategory] = useState(DEFAULT_CATEGORY);
 
   const addNotes = () => {
+    if (!title.trim() || !text.trim()) return;
     addNote(title, text, category); 
     setTitle('');
     setText('');
@@ -37,9 +38,9 @@ const AddNote = ({addNote}) => {
         value={category}
         onChange={(e) => setCategory(e.target.value)}
       >
-        {Object.values(CATEGORIES).map((cat) => (
-          <option key={cat.name} value={cat.name}>
-            {cat.name}
+        {CATEGORIES.map((category) => (
+          <option key={category.name} value={category.name}>
+            {category.name}
           </option>
         ))}
       </select>

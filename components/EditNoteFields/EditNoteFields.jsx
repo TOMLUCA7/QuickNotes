@@ -22,7 +22,7 @@ const EditNoteFields = ({editTitle, editText, editCategory, setEditTitle, setEdi
           onChange={(e) => setEditCategory(e.target.value)}
           className='edit-note-fields-category'
         >
-          {Object.values(CATEGORIES).map((category) => (
+          {CATEGORIES.map((category) => (
             <option key={category.name} value={category.name}>
               {category.name}
             </option>

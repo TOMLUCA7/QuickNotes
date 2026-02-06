@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import AddNote from '../components/AddNote/AddNote'
 import Note from '../components/Note/Note';
-import { CATEGORIES, DEFAULT_CATEGORY } from './constants';
+import { DEFAULT_CATEGORY } from './constants';
 
 import Modal from 'react-modal';
 // usually put it outside the component
@@ -11,8 +11,8 @@ Modal.setAppElement('#root');
 function App() {
   const saved = localStorage.getItem('notes_data');
   const [notes, setNotes] = useState(saved ? JSON.parse(saved) : [
-    { id: 1, title: "Shopping List", text: "Buy milk, bread and eggs", category: CATEGORIES.PERSONAL.name },
-    { id: 2, title: "React Project", text: "Finish the CRUD exercise", category: CATEGORIES.WORK.name },
+    { id: 1, title: "Shopping List", text: "Buy milk, bread and eggs", category: DEFAULT_CATEGORY },
+    { id: 2, title: "React Project", text: "Finish the CRUD exercise", category: DEFAULT_CATEGORY },
   ]);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ function App() {
 
   const deleteNote = (noteId) => {
      const filteredNotes = notes.filter(note => note.id !== noteId);
-  setNotes(filteredNotes);
+     setNotes(filteredNotes);
   }
 
   const updateNote = (noteId, updatedNote) => {

@@ -37,16 +37,20 @@ const NotesList = ({notes, deleteNote, updateNote}) => {
         >
           <div 
             className='notes-list-note-category' 
-            style={{ backgroundColor: Object.values(CATEGORIES).find(c => c.name === note.category)?.color || '#fff' }}>
-            <span style={{ color: Object.values(CATEGORIES).find(c => c.name === note.category)?.colorLabel || '#fff' }}>
+            style={{ backgroundColor: CATEGORIES.find(c => c.name === note.category)?.color || '#fff' }}>
+            <span style={{ color: CATEGORIES.find(c => c.name === note.category)?.colorLabel || '#fff' }}>
               {note.category}
             </span>
           </div>
+
           <h5>{new Date().toDateString()}</h5>
+
           <h2 style={{ margin: 0 }}>{note.title}</h2>
+
           <p className='notes-list-note-text'>
             {note.text}
           </p>
+
           <MyButton 
             label='Delete'
             className='notes-list-note-delete-button'
