@@ -34,8 +34,14 @@ const NotesList = ({notes, deleteNote, updateNote}) => {
           // clicking on the card will open the modal
           onClick={() => openModal(note)}
           className='notes-list-note'
-          style={{ backgroundColor: Object.values(CATEGORIES).find(c => c.name === note.category)?.color || '#fff' }}
         >
+          <div 
+            className='notes-list-note-category' 
+            style={{ backgroundColor: Object.values(CATEGORIES).find(c => c.name === note.category)?.color || '#fff' }}>
+            <span style={{ color: Object.values(CATEGORIES).find(c => c.name === note.category)?.colorLabel || '#fff' }}>
+              {note.category}
+            </span>
+          </div>
           <h5>{new Date().toDateString()}</h5>
           <h2 style={{ margin: 0 }}>{note.title}</h2>
           <p className='notes-list-note-text'>

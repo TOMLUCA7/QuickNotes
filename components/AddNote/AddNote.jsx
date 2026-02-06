@@ -8,7 +8,7 @@ const AddNote = ({addNote}) => {
   const [text, setText] = useState('');
   const [category, setCategory] = useState(DEFAULT_CATEGORY);
 
-  const handleAddClick = () => {
+  const addNotes = () => {
     addNote(title, text, category); 
     setTitle('');
     setText('');
@@ -46,7 +46,7 @@ const AddNote = ({addNote}) => {
       <MyButton 
         label='Add Note'
         className='add-note-button' 
-        onClick={handleAddClick} 
+        onClick={addNotes} 
       />
     </div>
   )
