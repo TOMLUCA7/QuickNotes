@@ -1,5 +1,5 @@
 import React from 'react'
-import NotesList from './NotesList'
+import NotesList from '../NotesList/NotesList'
 
 const Note = ({notes, deleteNote, updateNote}) => {
   return (

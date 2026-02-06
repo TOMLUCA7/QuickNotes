@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
-import AddNote from '../components/AddNote'
-import Note from '../components/Note';
+import AddNote from '../components/AddNote/AddNote'
+import Note from '../components/Note/Note';
 
 import Modal from 'react-modal';
 // בדרך כלל שמים את זה מחוץ לקומפוננטה

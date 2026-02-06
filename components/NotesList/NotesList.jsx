@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Modal from 'react-modal';
-import EditNoteFields from './EditNoteFields';
+import EditNoteFields from '../EditNoteFields/EditNoteFields';
 
 const NotesList = ({notes, deleteNote, updateNote}) => {
   const [modalIsOpen, setIsOpen] = useState(false);
