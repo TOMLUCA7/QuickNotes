@@ -1,0 +1,20 @@
+.edit-note-fields-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.edit-note-fields-title {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.edit-note-fields-text {
+    font-size: 18px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

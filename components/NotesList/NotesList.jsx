@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Modal from 'react-modal';
 import EditNoteFields from '../EditNoteFields/EditNoteFields';
+import './NotesList.css'
 
 const NotesList = ({notes, deleteNote, updateNote}) => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -22,21 +23,21 @@ const NotesList = ({notes, deleteNote, updateNote}) => {
 
 
   return (
-    <div style={{ flexWrap: 'wrap', flexDirection: 'row', gap: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10px', marginBottom: '5px' }}>
+    <div className='notes-list-container'>
       {notes.map(note => (
         <div 
           key={note.id} 
           // לחיצה על הכרטיס תפתח את המודל
           onClick={() => openModal(note)}
-          style={{ cursor: 'pointer', flexDirection: 'column', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid white', borderRadius: '10px', padding: '10px', gap: '10px', width: '200px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)' }}
+          className='notes-list-note'
         >
           <h5>{new Date().toDateString()}</h5>
           <h2 style={{ margin: 0 }}>{note.title}</h2>
-          <p style={{ color: "#119dd9de", overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', width: '100%' }}>
+          <p className='notes-list-note-text'>
             {note.text}
           </p>
           <button 
-            style={{ backgroundColor: '#d64a4aea',border: '2px solid white', borderRadius: '10px', color: 'white', width: '100px', height: '30px', cursor: 'pointer' }} 
+            className='notes-list-note-delete-button'
             onClick={(e) => {
               e.stopPropagation();
               deleteNote(note.id);
@@ -61,23 +62,20 @@ const NotesList = ({notes, deleteNote, updateNote}) => {
         }}
       >
         {selectedNote && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+          <div className='modal-content'>
             {/* text and title Input component */}
-            <EditNoteFields editTitle={editTitle} editText={editText} setEditTitle={setEditTitle} setEditText={setEditText}/>
+            <EditNoteFields 
+              editTitle={editTitle} 
+              editText={editText} 
+              setEditTitle={setEditTitle} 
+              setEditText={setEditText}
+            />
             
             {/* Buttons style */}
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginTop: '10px' }}>
+            <div className='modal-buttons'>
               {/* Update Button */}
               <button 
-                style={{
-                  padding: '10px 30px', 
-                  borderRadius: '10px', 
-                  backgroundColor: 'white', 
-                  color: 'black', 
-                  border: '1px solid blue', 
-                  cursor: 'pointer',
-                  fontWeight: 'bold'
-                }}
+                className='modal-buttons-update-button'
                 onClick={(e) => {
                   e.stopPropagation();
                   const updatedNote = { ...selectedNote, title: editTitle, text: editText };
@@ -91,15 +89,7 @@ const NotesList = ({notes, deleteNote, updateNote}) => {
               {/* Close Button */}
               <button 
                 onClick={closeModal}
-                style={{
-                  padding: '10px 30px', 
-                  borderRadius: '10px', 
-                  backgroundColor: 'blue', 
-                  color: 'white', 
-                  border: 'none', 
-                  cursor: 'pointer',
-                  fontWeight: 'bold'
-                }}
+                className='modal-buttons-close-button'
               >
                 Close
               </button>

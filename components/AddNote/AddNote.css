@@ -1,0 +1,33 @@
+.add-note-container {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-note-title {
+    width: 30%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.add-note-text {
+    width: 30%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.add-note-button {
+    width: 20%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: #119dd9de;
+    color: white;
+    border: 1px solid black;
+}

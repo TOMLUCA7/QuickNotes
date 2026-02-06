@@ -1,39 +1,20 @@
-import React from 'react'
+import './EditNoteFields.css'
 
 const EditNoteFields = ({editTitle, editText, setEditTitle, setEditText}) => {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+    <div className='edit-note-fields-container'>
         <input 
-              type="text" 
-              value={editTitle} 
-              onChange={(e) => setEditTitle(e.target.value)}
-              style={{
-                fontSize: '24px',
-                fontWeight: 'bold',
-                padding: '10px',
-                borderRadius: '10px',
-                border: '1px solid #ccc',
-                width: '100%',
-                boxSizing: 'border-box'
-              }}
-            />
+          type="text" 
+          value={editTitle} 
+          onChange={(e) => setEditTitle(e.target.value)}
+          className='edit-note-fields-title'
+        />
             
-            {/* Text Area */}
-            <textarea 
-              value={editText} 
-              onChange={(e) => setEditText(e.target.value)}
-              style={{
-                fontSize: '18px',
-                padding: '10px',
-                borderRadius: '10px',
-                border: '1px solid #ccc',
-                width: '100%',
-                minHeight: '100px',
-                fontFamily: 'inherit',
-                resize: 'vertical',
-                boxSizing: 'border-box'
-              }}
-            />
+        <textarea 
+          value={editText} 
+          onChange={(e) => setEditText(e.target.value)}
+          className='edit-note-fields-text'
+        />
     </div>
   )
 }
