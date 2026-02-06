@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Modal from 'react-modal';
 import EditNoteFields from '../EditNoteFields/EditNoteFields';
 import './NotesList.css'
+import MyButton from '../MyButton/MyButton';
 
 const NotesList = ({notes, deleteNote, updateNote}) => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -74,7 +75,8 @@ const NotesList = ({notes, deleteNote, updateNote}) => {
             {/* Buttons style */}
             <div className='modal-buttons'>
               {/* Update Button */}
-              <button 
+              <MyButton 
+                label='Update'
                 className='modal-buttons-update-button'
                 onClick={(e) => {
                   e.stopPropagation();
@@ -82,17 +84,14 @@ const NotesList = ({notes, deleteNote, updateNote}) => {
                   updateNote(selectedNote.id, updatedNote);
                   closeModal();
                 }}
-              >
-                Update
-              </button>
+              />
 
               {/* Close Button */}
-              <button 
+              <MyButton 
+                label='Close'
                 onClick={closeModal}
                 className='modal-buttons-close-button'
-              >
-                Close
-              </button>
+              />
             </div>
           </div>
         )}

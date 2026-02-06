@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import './AddNote.css'
+import MyButton from '../MyButton/MyButton'
 
 const AddNote = ({addNote}) => {
   const [title, setTitle] = useState('');
@@ -28,12 +29,11 @@ const AddNote = ({addNote}) => {
         value={text} 
         onChange={(e) => setText(e.target.value)} 
       />
-      <button 
+      <MyButton 
+        label='Add Note'
         className='add-note-button' 
         onClick={handleAddClick} 
-      >
-        Add Note
-      </button>
+      />
     </div>
   )
 }
