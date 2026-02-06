@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import AddNote from '../components/AddNote/AddNote'
 import Note from '../components/Note/Note';
@@ -8,15 +8,20 @@ import Modal from 'react-modal';
 Modal.setAppElement('#root');
 
 function App() {
-  const [notes, setNotes] = useState([
+  const saved = localStorage.getItem('notes_data');
+  const [notes, setNotes] = useState(saved ? JSON.parse(saved) : [
     { id: 1, title: "Shopping List", text: "Buy milk, bread and eggs", isEditing: false },
     { id: 2, title: "React Project", text: "Finish the CRUD exercise", isEditing: false },
   ]);
 
+  useEffect(() => {
+    localStorage.setItem('notes_data', JSON.stringify(notes));
+  }, [notes]);
+
   
   const addNote = (title, text) => {
     const newNote = {
-      id: new Date(),
+      id: Date.now(),
       title: title,
       text: text,
       isEditing: false
@@ -25,10 +30,8 @@ function App() {
   }
 
   const deleteNote = (noteId) => {
-     let newNotes = [...notes]
-     let deleteNoteById = newNotes.filter(note => note.id === noteId)
-     newNotes.splice(deleteNoteById, 1)
-     setNotes(newNotes)
+     const filteredNotes = notes.filter(note => note.id !== noteId);
+  setNotes(filteredNotes);
   }
 
   const updateNote = (noteId, updatedNote) => {
