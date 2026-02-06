@@ -3,17 +3,20 @@ import Modal from 'react-modal';
 import EditNoteFields from '../EditNoteFields/EditNoteFields';
 import './NotesList.css'
 import MyButton from '../MyButton/MyButton';
+import { CATEGORIES, DEFAULT_CATEGORY } from '../../src/constants';
 
 const NotesList = ({notes, deleteNote, updateNote}) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedNote, setSelectedNote] = useState(null);
   const [editTitle, setEditTitle] = useState('');
   const [editText, setEditText] = useState('');
+  const [editCategory, setEditCategory] = useState(DEFAULT_CATEGORY);
 
   const openModal = (note) => {
     setSelectedNote(note);
     setEditTitle(note.title);
     setEditText(note.text);
+    setEditCategory(note.category || DEFAULT_CATEGORY);
     setIsOpen(true);
   }
 
@@ -28,28 +31,28 @@ const NotesList = ({notes, deleteNote, updateNote}) => {
       {notes.map(note => (
         <div 
           key={note.id} 
-          // לחיצה על הכרטיס תפתח את המודל
+          // clicking on the card will open the modal
           onClick={() => openModal(note)}
           className='notes-list-note'
+          style={{ backgroundColor: Object.values(CATEGORIES).find(c => c.name === note.category)?.color || '#fff' }}
         >
           <h5>{new Date().toDateString()}</h5>
           <h2 style={{ margin: 0 }}>{note.title}</h2>
           <p className='notes-list-note-text'>
             {note.text}
           </p>
-          <button 
+          <MyButton 
+            label='Delete'
             className='notes-list-note-delete-button'
             onClick={(e) => {
               e.stopPropagation();
               deleteNote(note.id);
             }}
-          >
-            Delete
-          </button>
+          />
         </div>
       ))}
 
-      {/* הקוד של המודל */}
+      {/* modal code */}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -64,12 +67,14 @@ const NotesList = ({notes, deleteNote, updateNote}) => {
       >
         {selectedNote && (
           <div className='modal-content'>
-            {/* text and title Input component */}
+            {/* text, title and category Input component */}
             <EditNoteFields 
               editTitle={editTitle} 
               editText={editText} 
+              editCategory={editCategory}
               setEditTitle={setEditTitle} 
               setEditText={setEditText}
+              setEditCategory={setEditCategory}
             />
             
             {/* Buttons style */}
@@ -80,7 +85,7 @@ const NotesList = ({notes, deleteNote, updateNote}) => {
                 className='modal-buttons-update-button'
                 onClick={(e) => {
                   e.stopPropagation();
-                  const updatedNote = { ...selectedNote, title: editTitle, text: editText };
+                  const updatedNote = { ...selectedNote, title: editTitle, text: editText, category: editCategory };
                   updateNote(selectedNote.id, updatedNote);
                   closeModal();
                 }}

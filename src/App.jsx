@@ -2,16 +2,17 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import AddNote from '../components/AddNote/AddNote'
 import Note from '../components/Note/Note';
+import { CATEGORIES, DEFAULT_CATEGORY } from './constants';
 
 import Modal from 'react-modal';
-// בדרך כלל שמים את זה מחוץ לקומפוננטה
+// usually put it outside the component
 Modal.setAppElement('#root');
 
 function App() {
   const saved = localStorage.getItem('notes_data');
   const [notes, setNotes] = useState(saved ? JSON.parse(saved) : [
-    { id: 1, title: "Shopping List", text: "Buy milk, bread and eggs", isEditing: false },
-    { id: 2, title: "React Project", text: "Finish the CRUD exercise", isEditing: false },
+    { id: 1, title: "Shopping List", text: "Buy milk, bread and eggs", category: CATEGORIES.PERSONAL.name },
+    { id: 2, title: "React Project", text: "Finish the CRUD exercise", category: CATEGORIES.WORK.name },
   ]);
 
   useEffect(() => {
@@ -19,12 +20,12 @@ function App() {
   }, [notes]);
 
   
-  const addNote = (title, text) => {
+  const addNote = (title, text, category = DEFAULT_CATEGORY) => {
     const newNote = {
       id: Date.now(),
       title: title,
       text: text,
-      isEditing: false
+      category: category,
     }
     setNotes([...notes, newNote])
   }
