@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import AddNote from '../components/AddNote/AddNote'
 import Note from '../components/Note/Note';
-import { DEFAULT_CATEGORY } from './constants';
+import { DEFAULT_CATEGORY, CATEGORIES } from './constants';
+import SearchBar from '../components/SearchBar/SearchBar';
+import FilterBar from '../components/FilterBar/FilterBar';
 
 import Modal from 'react-modal';
 // usually put it outside the component
@@ -14,6 +16,9 @@ function App() {
     { id: 1, title: "Shopping List", text: "Buy milk, bread and eggs", category: DEFAULT_CATEGORY },
     { id: 2, title: "React Project", text: "Finish the CRUD exercise", category: DEFAULT_CATEGORY },
   ]);
+
+  const [searchNotes, setSearchNotes] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   useEffect(() => {
     localStorage.setItem('notes_data', JSON.stringify(notes));
@@ -39,19 +44,29 @@ function App() {
     setNotes(notes.map(note => note.id === noteId ? updatedNote : note))
   }
   
- 
+  const filteredNotes = notes.filter((note) => {
+    const matchesSearch =
+      note.title.toLowerCase().includes(searchNotes.toLowerCase()) ||
+      note.text.toLowerCase().includes(searchNotes.toLowerCase());
+    const matchesCategory =
+      selectedCategory === 'All' || note.category === selectedCategory;
+
+    return matchesSearch && matchesCategory;
+  });
+
   return (
     <>
-      {notes.length > 0 ? (
-        <>
-          <AddNote addNote={addNote}/>
-          <Note notes={notes} deleteNote={deleteNote} updateNote={updateNote}/>
-        </>
+      <SearchBar searchNotes={searchNotes} setSearchNotes={setSearchNotes} />
+      <FilterBar
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+        categories={CATEGORIES}
+      />
+      <AddNote addNote={addNote}/>
+      {filteredNotes.length > 0 ? (
+        <Note notes={filteredNotes} deleteNote={deleteNote} updateNote={updateNote}/>
       ) : (
-        <>
-          <AddNote addNote={addNote}/>
-          <h3>No notes found</h3>
-        </>
+        <h3>No notes found</h3>
       )}
     </>
   )

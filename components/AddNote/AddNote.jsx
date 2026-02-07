@@ -9,7 +9,10 @@ const AddNote = ({addNote}) => {
   const [category, setCategory] = useState(DEFAULT_CATEGORY);
 
   const addNotes = () => {
-    if (!title.trim() || !text.trim()) return;
+    if (!title.trim() || !text.trim()) {
+      alert('Please fill in all fields');
+      return;
+    }
     addNote(title, text, category); 
     setTitle('');
     setText('');
@@ -19,6 +22,7 @@ const AddNote = ({addNote}) => {
 
   return (
     <div className='add-note-container'>
+      <h4>Add Note</h4>
       <input 
         className='add-note-title' 
         type="text" 

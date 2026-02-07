@@ -1,0 +1,29 @@
+.filter-bar-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-button {
+  transition: all 0.3s ease;
+  width: 10%;
+  height: 10%;  
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.filter-button.active {
+  background-color: #119dd9de; 
+  color: #fff;
+  transform: scale(1.05); 
+  width: 10%;
+  height: 10%;  
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
