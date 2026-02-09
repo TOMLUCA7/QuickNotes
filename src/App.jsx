@@ -33,15 +33,18 @@ function App() {
       category: category,
     }
     setNotes([...notes, newNote])
+    alert('Note added successfully');
   }
 
   const deleteNote = (noteId) => {
      const filteredNotes = notes.filter(note => note.id !== noteId);
      setNotes(filteredNotes);
+     alert('Note deleted successfully');
   }
 
   const updateNote = (noteId, updatedNote) => {
     setNotes(notes.map(note => note.id === noteId ? updatedNote : note))
+    alert('Note updated successfully');
   }
   
   const filteredNotes = notes.filter((note) => {

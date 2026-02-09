@@ -43,7 +43,8 @@ const NotesList = ({notes, deleteNote, updateNote}) => {
             </span>
           </div>
 
-          <h5>{new Date().toDateString()}</h5>
+          {/* time when note was created */}
+          <h5>{new Date(note.createdAt).toDateString()}</h5>
 
           <h2 style={{ margin: 0 }}>{note.title}</h2>
 
